@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "NODE_ENV=development nodemon ."
+    "start": "NODE_ENV=development nodemon .",
+    "test": "NODE_ENV=test ava --verbose"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +18,11 @@
     "mysql2": "^1.6.5",
     "secure-env": "^1.0.0",
     "sequelize": "^5.10.2",
-    "sequelize-cli": "^5.5.0"
+    "sequelize-cli": "^5.5.0",
+    "sinon": "^7.3.2"
   },
   "devDependencies": {
+    "ava": "^2.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
