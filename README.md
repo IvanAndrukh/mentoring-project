@@ -47,10 +47,19 @@ Simple REST project.
 Runs the app in the development mode.
 Open http://localhost:8000 to view it in the browser.
 
-# Project issues:
+# Project tasks:
 
 * SetUp Express project
     - Connect Mysql and MongoDb to the project
     - Add testing tools and test enviroment to the project
     - Create NodeJS presentation
     - Investigate REST specification, NPM 
+    (done)
+* (2020-02-03) Create db structure (MySQL/Mongo) for:
+   - child
+   - kindergarden teacher
+   - group
+   - posibility to assign miltiple children and up to 2 kindergarden teacher (at least one) to group
+   - graphical representation of db 
+   - API (RESTFULL) (include .../mysql... or .../mongodb...  into URL to specify which db is used) for CRUD 
+    
