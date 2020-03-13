@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 
 const { mysqlPass } = require('../../config');
-const models = require('./models');
 
 class SequelizeConnection {
   constructor() {
@@ -17,8 +16,8 @@ class SequelizeConnection {
       .catch(err => console.log('Failed connecting to MySQL DB', err));
   }
 
-  initModels() {
-    Object.values(models).forEach(initModel => initModel(this.sequelize, Sequelize));
+  initModels(models) {
+    return models.map(initModel => initModel(this.sequelize, Sequelize));
   }
 }
 
