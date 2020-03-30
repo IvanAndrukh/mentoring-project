@@ -1,10 +1,12 @@
 const Sequelize = require('sequelize');
 
-const { mysqlPass } = require('../../config');
+const config = require('../../config');
+
+const { mysqlUser, mysqlPassword, mysqlDatabase } = config.get('mysql');
 
 class SequelizeConnection {
   constructor() {
-    this.sequelize = new Sequelize('sqlDb', 'root', mysqlPass, {
+    this.sequelize = new Sequelize(mysqlDatabase, mysqlUser, mysqlPassword, {
       host: 'localhost',
       dialect: 'mysql',
     });
