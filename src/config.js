@@ -12,6 +12,13 @@ const config = convict({
     env: 'NODE_ENV',
   },
   mysql: {
+    mysqlHost: {
+      doc: 'mysql db host',
+      format: String,
+      default: 'localhost',
+      arg: 'mysqlHost',
+      env: 'MYSQL_HOST',
+    },
     mysqlUser: {
       doc: 'mysql db username',
       format: String,

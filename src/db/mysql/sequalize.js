@@ -2,12 +2,12 @@ const Sequelize = require('sequelize');
 
 const config = require('../../config');
 
-const { mysqlUser, mysqlPassword, mysqlDatabase } = config.get('mysql');
+const { mysqlHost, mysqlUser, mysqlPassword, mysqlDatabase } = config.get('mysql');
 
 class SequelizeConnection {
   constructor() {
     this.sequelize = new Sequelize(mysqlDatabase, mysqlUser, mysqlPassword, {
-      host: 'localhost',
+      host: mysqlHost,
       dialect: 'mysql',
     });
   }
@@ -19,7 +19,11 @@ class SequelizeConnection {
   }
 
   initModels(models) {
-    return models.map(initModel => initModel(this.sequelize, Sequelize));
+    // return models.map(initModel => initModel(this.sequelize, Sequelize));
+    return models.reduce((acc, model) => {
+      acc.modle = model(this.sequelize, Sequelize);
+      return acc;
+    }, {});
   }
 }
 
