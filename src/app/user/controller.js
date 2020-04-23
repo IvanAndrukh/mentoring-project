@@ -9,8 +9,9 @@ const create = async (req, res, next) => {
       birthday,
       phone,
     } = req.body;
+    const dbType = req.params.db;
 
-    const newUser = await userService.create({
+    const newUser = await userService.create(dbType, {
       name,
       surname,
       email,

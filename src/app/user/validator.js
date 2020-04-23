@@ -6,9 +6,11 @@ const create = (req, res, next) => {
   try {
     const createSchema = joi.object.keys({
       name: joi.string().required(),
+      db: joi.string().valid(['mongo', 'mysql']),
     });
+    const inputParams = { ...req.body, ...req.params };
 
-    validateInput(req.body, createSchema);
+    validateInput(inputParams, createSchema);
 
     return next();
   } catch (error) {
