@@ -19,12 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     birthday: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'age',
+      field: 'birthday',
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'email',
+      unique: true,
       validate: {
         isEmail: true,
       },
@@ -32,13 +33,12 @@ module.exports = (sequelize, DataTypes) => {
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       field: 'phone',
     },
   });
 
-  User.associate = (models) => {
-    models.User.hasMany(models.Task);
-  };
+  User.associate = () => {};
 
   return User;
 };

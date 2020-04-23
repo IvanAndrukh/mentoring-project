@@ -11,12 +11,6 @@ const userSchema = new Schema({
     trim: true,
     required: true,
   },
-  discount: {
-    type: Number,
-    default: null,
-    max: 99,
-    required: true,
-  },
   birthday: {
     type: Date,
     required: true,

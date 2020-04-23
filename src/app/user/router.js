@@ -6,6 +6,6 @@ const controller = require('./controller');
 const router = express.Router();
 
 
-router.post('/api/users/:db', validator.create, controller.create);
+router.post('/:db/users', validator.create, controller.create);
 
 module.exports = router;

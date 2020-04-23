@@ -1,14 +1,9 @@
 const repository = require('./repository');
 
 const create = async (dbType, userData) => {
-  try {
-    const userRepository = repository[dbType];
+  const userRepository = repository[dbType];
 
-    const newUser = await userRepository.create(userData);
-    return newUser;
-  } catch (error) {
-    throw error;
-  }
+  return userRepository.create(userData);
 };
 
 module.exports = {

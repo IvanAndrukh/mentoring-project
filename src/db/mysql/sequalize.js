@@ -15,6 +15,7 @@ class SequelizeConnection {
     this.sequelize = new Sequelize(mysqlDatabase, mysqlUser, mysqlPassword, {
       host: mysqlHost,
       dialect: 'mysql',
+      logging: false,
     });
   }
 
@@ -25,8 +26,8 @@ class SequelizeConnection {
   }
 
   initModels(models) {
-    return models.reduce((acc, model) => {
-      acc.modle = model(this.sequelize, Sequelize);
+    return Object.keys(models).reduce((acc, modelName) => {
+      acc[modelName] = models[modelName](this.sequelize, Sequelize);
       return acc;
     }, {});
   }
