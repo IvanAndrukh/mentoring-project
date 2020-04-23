@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint .",
     "start": "NODE_ENV=development nodemon .",
-    "test": "NODE_ENV=test ava --verbose"
+    "test": "NODE_ENV=test ava --verbose",
+    "migrations:up": "node scripts/migrations/up",
+    "migrations:down": "node scripts/migrations/down"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +23,9 @@
     "mongoose": "^5.6.6",
     "mysql2": "^1.6.5",
     "sequelize": "^5.21.4",
-    "sinon": "^7.3.2"
+    "sinon": "^7.3.2",
+    "umzug": "^2.3.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "ava": "^2.2.0",

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable('Users',
+    return queryInterface.createTable('Users',
       {
         id: {
           type: Sequelize.UUID,
