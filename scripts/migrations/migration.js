@@ -4,7 +4,7 @@ const Umzug = require('umzug');
 const Sequelize = require('sequelize');
 
 const config = require('../../src/config');
-const logger = require('../../src/app/common/logger');
+const logger = require('../../src/common/logger');
 
 const getSequelize = () => {
   const {

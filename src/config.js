@@ -50,6 +50,29 @@ const config = convict({
       env: 'MYSQL_DATABASE',
     },
   },
+  mongo: {
+    mongoHost: {
+      doc: 'mongo db host',
+      format: String,
+      default: 'localhost',
+      arg: 'mongoHost',
+      env: 'DB_HOST',
+    },
+    mongoPort: {
+      doc: 'mongo db port',
+      format: String,
+      default: 'localhost',
+      arg: 'mongoPort',
+      env: 'DB_PORT',
+    },
+    mongoName: {
+      doc: 'mongo db name',
+      format: String,
+      default: 'kindergarten',
+      arg: 'mongoName',
+      env: 'dbName',
+    },
+  },
 });
 
 

@@ -1,3 +1,3 @@
 const { down } = require('./migration');
 
-(async () => down())();
+down();

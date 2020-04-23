@@ -1,8 +1,14 @@
 const Sequelize = require('sequelize');
 
+const logger = require('../../common/logger');
 const config = require('../../config');
 
-const { mysqlHost, mysqlUser, mysqlPassword, mysqlDatabase } = config.get('mysql');
+const {
+  mysqlHost,
+  mysqlUser,
+  mysqlPassword,
+  mysqlDatabase,
+} = config.get('mysql');
 
 class SequelizeConnection {
   constructor() {
@@ -14,12 +20,11 @@ class SequelizeConnection {
 
   connect() {
     this.sequelize.authenticate()
-      .then(() => console.log('Successfully connected to  MySQL DB'))
-      .catch(err => console.log('Failed connecting to MySQL DB', err));
+      .then(() => logger.info('Successfully connected to  MySQL'))
+      .catch(err => logger.err(`Failed connecting to MySQL: ${err}`));
   }
 
   initModels(models) {
-    // return models.map(initModel => initModel(this.sequelize, Sequelize));
     return models.reduce((acc, model) => {
       acc.modle = model(this.sequelize, Sequelize);
       return acc;

@@ -1,6 +1,6 @@
 const joi = require('joi');
 
-const { validateInput } = require('../common/utils');
+const { validateInput } = require('../../common/utils');
 
 const create = (req, res, next) => {
   try {
