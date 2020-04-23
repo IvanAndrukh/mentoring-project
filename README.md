@@ -1,6 +1,6 @@
 # Mentoring project
 
-Simple REST project.
+REST project that allows manage kindergarten.
 
 # Technologies which have been used:
 * NodeJS
@@ -9,18 +9,10 @@ Simple REST project.
 * MySQL
 
 # Requirements:
+* Downloaded project - `git clone https://github.com/IvanAndrukh/mentoring-project.git`;
 * Installed Docker - https://docs.docker.com/install/
 * Installed docker-compose - https://docs.docker.com/compose/install/
 * Installed NodeJS and npm - https://nodejs.org/en/download/
-* Defined `PROJECT_ENV_KEY` in configuration file for a terminal
-
-# Setup project:
-* git clone https://github.com/IvanAndrukh/mentoring-project.git - to download the project;
-* `npm install` - to install all project dependencies
-* `npm start` - run the server localy
-* `npm run lint` - to run eslint
-* `npm test` - to run tests 
-* `secure-env .env -s $PROJECT_ENV_KEY` - to secure .env file 
 
 # Configuration
 * Create `.env` file - and pass variables here
@@ -31,11 +23,20 @@ Simple REST project.
 | `MYSQL_DATABASE`                | kindergarten  | mysql db name         |
 | `MYSQL_USER`                    | admin         | mysql user name       |
 | `MYSQL_PASSWORD`                | pass          | mysql root password   |
+| `MONGO_HOST`                    | localhost     | mongo host            |
+| `MONGO_PORT`                    | 27017         | mongo port            |
+| `MONGO_NAME`                    | kindergarten  | mongo db name         |
 
-
-# Run locally
-* `docker-compose up` - to start mysql db server and adminer
+# Setup project and run locally:
+* `npm install` - to install all project dependencies
+* `docker-compose up` - to start mysql and mongo dbs servers and adminer
+* `npm run migrations:up` - to execute MYSQL migrations
 * `npm start` - to start Node server
+
+# Additional commands:
+* Installed Robo3T to have access to MongoDb data - https://robomongo.org/
+* Use Adminer to have access to MYSQL data  http://localhost:3031
+* `npm run migrations:down` - to drop all migrations
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Project tasks:
