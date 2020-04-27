@@ -7,4 +7,5 @@ const validateInput = (params, schema) => {
   if (error) { throw createHttpError(400, error); }
 };
 
+
 module.exports = { validateInput };
