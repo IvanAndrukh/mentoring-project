@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+const { USER_ROLES } = require('../../../constants');
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -23,7 +25,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  updatedAt: {
+  userRole: {
+    type: String,
+    trim: true,
+    set: role => role.toLowerCase(),
+    enum: Object.values(USER_ROLES),
+    required: true,
+  },
+  updatedAtAt: {
     type: Date,
     default: Date.now(),
   },

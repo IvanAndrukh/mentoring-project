@@ -1,9 +1,8 @@
 const joi = require('joi');
 const { BadRequest } = require('http-errors');
 
-const { validateInput } = require('../../common/utils');
-const validatorWrapper = require('../../common/validatorWrapper');
-
+const { validateInput, validatorWrapper } = require('../../common');
+const { USER_ROLES } = require('../../constants');
 const repository = require('./repository');
 
 const userExists = async (req) => {
@@ -22,6 +21,7 @@ const create = req => validateInput(
   { ...req.params, ...req.body },
   joi.object().keys({
     name: joi.string().required(),
+    userRole: joi.string().valid(Object.values(USER_ROLES)).required(),
     surname: joi.string().required(),
     phone: joi.string().required(),
     email: joi.string().email().required(),

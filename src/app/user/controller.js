@@ -6,6 +6,7 @@ const create = (req) => {
     surname,
     email,
     birthday,
+    userRole,
     phone,
   } = req.body;
   const dbType = req.params.db;
@@ -15,6 +16,7 @@ const create = (req) => {
     surname,
     email,
     birthday,
+    userRole,
     phone,
   });
 };

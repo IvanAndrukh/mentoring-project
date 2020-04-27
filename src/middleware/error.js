@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-const { HttpError } = require('http-errors');
+
+const { HttpError, InternalServerError } = require('http-errors');
+
 const logger = require('../common/logger');
 
 module.exports = (err, req, res, next) => {
@@ -20,7 +22,8 @@ module.exports = (err, req, res, next) => {
     const errStatus = 500;
     const errObj = {
       status: 'Error',
-      message: 'Internal Server Error',
+      error: err.name || 'Uncaught Exception',
+      message: `Internal Server Error: ${err.message}`,
     };
 
     res.status(errStatus).send(JSON.stringify(errObj, null, 2));
