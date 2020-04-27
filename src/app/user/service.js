@@ -6,7 +6,7 @@ const create = (db, userData) => {
   return newUser;
 };
 
-const findById = (db, id) => {
+const get = (db, id) => {
   const userRepository = repository[db];
   const user = userRepository.findById(id);
   return user;
@@ -14,5 +14,5 @@ const findById = (db, id) => {
 
 module.exports = {
   create,
-  findById,
+  get,
 };

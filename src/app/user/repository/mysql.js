@@ -4,11 +4,18 @@ const { User } = require('../../../db/mysql/models');
 
 const create = (values, options = {}) => User.create(values, options);
 
-const userExists = (email, phone) => User.findOne({
-  where: { [Sequelize.Op.or]: [{ email }, { phone }] },
+const getOne = (params = {}, options = {}) => User.findOne({
+  where: params,
+  ...options,
 });
+
+const userExists = (email, phone) => getOne({ [Sequelize.Op.or]: [{ email }, { phone }] });
+
+const findById = id => User.findByPk(id);
 
 module.exports = {
   create,
   userExists,
+  findById,
+  getOne,
 };

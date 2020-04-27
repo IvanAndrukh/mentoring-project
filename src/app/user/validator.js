@@ -30,7 +30,10 @@ const create = req => validateInput(
   }),
 );
 
-const get = req => validateInput(req.params, { id: joi.string().required() });
+const get = req => validateInput(req.params, {
+  id: joi.string().required(),
+  db: joi.string().valid(['mongo', 'mysql']).required(),
+});
 
 module.exports = {
   userExists: validatorWrapper(userExists),

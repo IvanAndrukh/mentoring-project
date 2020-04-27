@@ -22,7 +22,7 @@ const create = (req) => {
 };
 
 const get = (req) => {
-  const { db, id } = req.params.db;
+  const { db, id } = req.params;
 
   return userService.get(db, id);
 };
