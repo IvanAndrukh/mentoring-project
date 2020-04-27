@@ -1,6 +1,6 @@
 const userService = require('./service');
 
-const create = (req) => {
+const create = req => {
   const {
     name,
     surname,
@@ -9,9 +9,9 @@ const create = (req) => {
     userRole,
     phone,
   } = req.body;
-  const dbType = req.params.db;
+  const { db } = req.params;
 
-  return userService.create(dbType, {
+  return userService.create(db)({
     name,
     surname,
     email,
@@ -21,13 +21,21 @@ const create = (req) => {
   });
 };
 
-const get = (req) => {
+const get = req => {
   const { db, id } = req.params;
 
-  return userService.get(db, id);
+  return userService.get(db)(id);
 };
+
+const list = req => {
+  const { db, ...filter } = req.params;
+
+  return userService.list(db)(filter);
+};
+
 
 module.exports = {
   create,
   get,
+  list,
 };

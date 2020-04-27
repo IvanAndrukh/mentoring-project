@@ -34,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { isIn: [Object.values(USER_ROLES)] },
-      field: 'user_role',
     },
   });
 

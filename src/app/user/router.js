@@ -8,5 +8,6 @@ const controller = require('./controller');
 
 router.post('/:db/users', validator.create, validator.userExists, responseWarapper(controller.create, 201));
 router.get('/:db/users/:id', validator.get, responseWarapper(controller.get));
+router.get('/:db/users', validator.list, responseWarapper(controller.list));
 
 module.exports = router;

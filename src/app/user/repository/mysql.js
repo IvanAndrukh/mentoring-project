@@ -13,9 +13,12 @@ const userExists = (email, phone) => getOne({ [Sequelize.Op.or]: [{ email }, { p
 
 const findById = id => User.findByPk(id);
 
+const list = (params = {}, order = [['createdAt', 'DESC']]) => User.findAll({ where: params, order });
+
 module.exports = {
   create,
   userExists,
   findById,
   getOne,
+  list,
 };

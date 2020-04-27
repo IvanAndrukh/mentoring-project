@@ -5,7 +5,7 @@ const { validateInput, validatorWrapper } = require('../../common');
 const { USER_ROLES } = require('../../constants');
 const repository = require('./repository');
 
-const userExists = async (req) => {
+const userExists = async req => {
   const { db } = req.params;
   const { email, phone } = req.body;
   const userRepo = repository[db];
@@ -35,8 +35,13 @@ const get = req => validateInput(req.params, {
   db: joi.string().valid(['mongo', 'mysql']).required(),
 });
 
+const list = req => validateInput(req.params, {
+  db: joi.string().valid(['mongo', 'mysql']).required(),
+});
+
 module.exports = {
   userExists: validatorWrapper(userExists),
   create: validatorWrapper(create),
   get: validatorWrapper(get),
+  list: validatorWrapper(list),
 };

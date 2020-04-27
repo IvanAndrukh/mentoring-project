@@ -18,6 +18,7 @@
         "max-len": ["error", { "code": 120 }],
         "require-await": 2,
         "no-await-in-loop": 2,
-        "no-return-await": 2
+        "no-return-await": 2,
+        "arrow-parens": [2, "as-needed", { "requireForBlockBody": false }]
     }
 }

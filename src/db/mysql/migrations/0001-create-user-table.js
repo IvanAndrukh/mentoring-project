@@ -36,7 +36,7 @@ module.exports = {
         unique: true,
         allowNull: false,
       },
-      user_role: {
+      userRole: {
         type: Sequelize.STRING,
         allowNull: false,
       },
