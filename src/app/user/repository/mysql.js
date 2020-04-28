@@ -15,9 +15,13 @@ const list = (params = {}, order = [['createdAt', 'DESC']]) => User.findAll({ wh
 const update = (values, where = {}, options = {}) => User.update(values, { where, ...options });
 
 const updateById = async (values, id) => {
-  const updatedUsers = await update(values, { id });
-  return updatedUsers[0];
+  await update(values, { id });
+  const updatedUser = await findById(id);
+  return updatedUser;
 };
+
+const removeById = id => User.destroy({ where: { id } });
+
 
 module.exports = {
   create,
@@ -27,4 +31,5 @@ module.exports = {
   list,
   update,
   updateById,
+  removeById,
 };

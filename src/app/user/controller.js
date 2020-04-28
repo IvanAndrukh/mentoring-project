@@ -1,3 +1,5 @@
+const responseWarapper = require('../../common/responseWrapper');
+
 const userService = require('./service');
 
 const create = req => {
@@ -44,7 +46,7 @@ const update = req => {
   } = req.body;
   const { db, id } = req.params;
 
-  return userService.create(db)({// TODO: add correct email and phone update
+  return userService.updateById(db)({// TODO: add correct email and phone update
     name,
     surname,
     email,
@@ -54,9 +56,17 @@ const update = req => {
   }, id);
 };
 
+const remove = async req => {
+  const { db, id } = req.params;
+  await userService.remove(db)(id);
+  return {};
+};
+
+
 module.exports = {
-  create,
-  get,
-  list,
-  update,
+  create: responseWarapper(create, 201),
+  get: responseWarapper(get),
+  list: responseWarapper(list),
+  update: responseWarapper(update),
+  remove: responseWarapper(remove),
 };

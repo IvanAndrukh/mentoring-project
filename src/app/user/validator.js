@@ -53,10 +53,17 @@ const update = req => validateInput(
   }),
 );
 
+const remove = req => validateInput(req.params, {
+  db: joi.string().valid(['mongo', 'mysql']).required(),
+  id: joi.string().required(),
+});
+
+
 module.exports = {
   userExists: validatorWrapper(userExists),
   create: validatorWrapper(create),
   get: validatorWrapper(get),
   list: validatorWrapper(list),
   update: validatorWrapper(update),
+  remove: validatorWrapper(remove),
 };

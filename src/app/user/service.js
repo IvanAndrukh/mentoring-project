@@ -28,9 +28,15 @@ const updateById = db => async (values, id) => {
   return updatedUser;
 };
 
+const remove = db => async id => { // Throw error if not exist?
+  const repository = userRepositories[db];
+  await repository.removeById(id);
+};
+
 module.exports = {
   create,
   get,
   list,
   updateById,
+  remove,
 };

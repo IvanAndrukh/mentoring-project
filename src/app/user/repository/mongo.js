@@ -12,6 +12,8 @@ const update = (values, where = {}) => User.update(where, values);
 
 const updateById = (values, id) => User.updateOne(values, { id });
 
+const removeById = id => User.remove({ _id: id });
+
 
 module.exports = {
   create,
@@ -20,4 +22,5 @@ module.exports = {
   list,
   updateById,
   update,
+  removeById,
 };

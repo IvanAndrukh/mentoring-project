@@ -4,6 +4,7 @@ module.exports = {
     {
       id: {
         type: Sequelize.UUID,
+        unique: true,
         primaryKey: true,
       },
       name: {
