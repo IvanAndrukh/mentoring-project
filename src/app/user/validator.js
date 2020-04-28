@@ -39,9 +39,24 @@ const list = req => validateInput(req.params, {
   db: joi.string().valid(['mongo', 'mysql']).required(),
 });
 
+const update = req => validateInput(
+  { ...req.params, ...req.body },
+  joi.object().keys({
+    name: joi.string().required(),
+    surname: joi.string().required(),
+    phone: joi.string().required(),
+    email: joi.string().email().required(),
+    birthday: joi.date().iso().required(),
+    id: joi.string().required(),
+    userRole: joi.string().valid(Object.values(USER_ROLES)).required(), // Update or PAtch ????
+    db: joi.string().valid(['mongo', 'mysql']).required(),
+  }),
+);
+
 module.exports = {
   userExists: validatorWrapper(userExists),
   create: validatorWrapper(create),
   get: validatorWrapper(get),
   list: validatorWrapper(list),
+  update: validatorWrapper(update),
 };

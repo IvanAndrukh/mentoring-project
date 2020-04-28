@@ -21,8 +21,16 @@ const list = db => async (filter = {}) => {
   return users;
 };
 
+const updateById = db => async (values, id) => {
+  const repository = userRepositories[db];
+  const updatedUser = await repository.updateById(values, id);
+
+  return updatedUser;
+};
+
 module.exports = {
   create,
   get,
   list,
+  updateById,
 };

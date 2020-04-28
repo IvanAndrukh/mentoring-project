@@ -33,9 +33,30 @@ const list = req => {
   return userService.list(db)(filter);
 };
 
+const update = req => {
+  const {
+    name,
+    surname,
+    email,
+    birthday,
+    phone,
+    userRole,
+  } = req.body;
+  const { db, id } = req.params;
+
+  return userService.create(db)({// TODO: add correct email and phone update
+    name,
+    surname,
+    email,
+    birthday,
+    userRole,
+    phone,
+  }, id);
+};
 
 module.exports = {
   create,
   get,
   list,
+  update,
 };
