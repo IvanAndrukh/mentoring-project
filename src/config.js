@@ -1,16 +1,79 @@
-const secureEnv = require('secure-env');
+const dotenv = require('dotenv');
+const convict = require('convict');
 
-const env = process.env.NODE_ENV || 'development';
-const envConfig = secureEnv({ secret: process.env.PROJECT_ENV_KEY });
-const { MYSQL_PASS } = envConfig;
+dotenv.config();
 
-const config = {
-  development: {
-    mongoDbUrl: 'mongodb://127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019/nosql-db',
-    mysqlPass: MYSQL_PASS,
+const config = convict({
+  env: {
+    doc: 'Execution environment',
+    format: ['production', 'development', 'test'],
+    default: 'development',
+    arg: 'nodeEnv',
+    env: 'NODE_ENV',
   },
-  test: { },
-};
+  mysql: {
+    mysqlHost: {
+      doc: 'mysql db host',
+      format: String,
+      default: 'localhost',
+      arg: 'mysqlHost',
+      env: 'MYSQL_HOST',
+    },
+    mysqlUser: {
+      doc: 'mysql db username',
+      format: String,
+      default: 'admin',
+      arg: 'mysqlUser',
+      env: 'MYSQL_USER',
+    },
+    mysqlPassword: {
+      doc: 'mysql db password',
+      format: String,
+      sensitive: true,
+      default: 'pass',
+      arg: 'mysqlPassword',
+      env: 'MYSQL_PASSWORD',
+    },
+    mysqlRootPassword: {
+      doc: 'mysql db root password',
+      format: String,
+      sensitive: true,
+      default: 'pass',
+      arg: 'mysqlRootPassword',
+      env: 'MYSQL_ROOT_PASSWORD',
+    },
+    mysqlDatabase: {
+      doc: 'mysql database',
+      format: String,
+      default: 'kg',
+      arg: 'mysqlDatabase',
+      env: 'MYSQL_DATABASE',
+    },
+  },
+  mongo: {
+    mongoHost: {
+      doc: 'mongo db host',
+      format: String,
+      default: 'localhost',
+      arg: 'mongoHost',
+      env: 'DB_HOST',
+    },
+    mongoPort: {
+      doc: 'mongo db port',
+      format: String,
+      default: 'localhost',
+      arg: 'mongoPort',
+      env: 'DB_PORT',
+    },
+    mongoName: {
+      doc: 'mongo db name',
+      format: String,
+      default: 'kindergarten',
+      arg: 'mongoName',
+      env: 'dbName',
+    },
+  },
+});
 
 
-module.exports = config[env];
+module.exports = config;

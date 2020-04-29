@@ -1,6 +1,6 @@
 # Mentoring project
 
-Simple REST project.
+REST project that allows manage kindergarten.
 
 # Technologies which have been used:
 * NodeJS
@@ -9,44 +9,36 @@ Simple REST project.
 * MySQL
 
 # Requirements:
-* Installed MongoDB - https://docs.mongodb.com/manual/installation/
-* Started MongoDB server in replication mode
-    *  You need to start 3 mongo servers on different ports:
-        - mongod --port 27017 --dbpath "your_path_to_the_folder/MongoData/rs0" --replSet rsProject
-        - mongod --port 27018 --dbpath "your_path_to_the_folder/MongoData/rs1" --replSet rsProject
-        - mongod --port 27019 --dbpath "your_path_to_the_folder/MongoData/rs2" --replSet rsProject
-    * Then connect to the mysql client: mongo;
-    * Then initiate the replication: 
-        -  rs.initiate(
-            -  {
-                -  _id: "rsProject",
-                -  version: 1,
-                -  members: [
-                    -  { _id: 0, host : "localhost:27017" },
-                    -  { _id: 1, host : "localhost:27018" },
-                    -  { _id: 2, host : "localhost:27019" }
-                -  ]
-            -  }
-        -  )
-
-* Installed MySQL - https://dev.mysql.com/doc/refman/8.0/en/installing.html
-* Started MySQL server
-
+* Downloaded project - `git clone https://github.com/IvanAndrukh/mentoring-project.git`;
+* Installed Docker - https://docs.docker.com/install/
+* Installed docker-compose - https://docs.docker.com/compose/install/
 * Installed NodeJS and npm - https://nodejs.org/en/download/
-* Defined `PROJECT_ENV_KEY` in configuration file for a terminal
 
-# Setup project:
-* git clone https://github.com/IvanAndrukh/mentoring-project.git - to download the project;
+# Configuration
+* Create `.env` file - and pass variables here
+
+| Environment variables           | Default value | Description           |
+| --------------------------------| ------------- | --------------------- |
+| `MYSQL_ROOT_PASSWORD`           | pass          | mysql root password   |
+| `MYSQL_DATABASE`                | kindergarten  | mysql db name         |
+| `MYSQL_USER`                    | admin         | mysql user name       |
+| `MYSQL_PASSWORD`                | pass          | mysql root password   |
+| `MONGO_HOST`                    | localhost     | mongo host            |
+| `MONGO_PORT`                    | 27017         | mongo port            |
+| `MONGO_NAME`                    | kindergarten  | mongo db name         |
+
+# Setup project and run locally:
 * `npm install` - to install all project dependencies
-* `npm start` - run the server localy
-* `npm run lint` - to run eslint
-* `npm test` - to run tests
+* `docker-compose up` - to start mysql and mongo dbs servers and adminer
+* `npm run migrations:up` - to execute MYSQL migrations
+* `npm start` - to start Node server
 
+# Additional commands:
+* Installed Robo3T to have access to MongoDb data - https://robomongo.org/
+* Use Adminer to have access to MYSQL data  http://localhost:3031
+* `npm run migrations:down` - to drop all migrations
 
-
-Runs the app in the development mode.
-Open http://localhost:8000 to view it in the browser.
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Project tasks:
 
 * SetUp Express project
